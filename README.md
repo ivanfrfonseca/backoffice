@@ -1,4 +1,4 @@
-# Backoffice...
+# Backoffice
 
 Uma aplicação web desenvolvida para facilitar a gestão do conhecimento dentro da equipe. Permite a criação e organização de uma base de conhecimento, incluindo o cadastro de scripts e post-its para auxiliar nas tarefas operacionais.
 

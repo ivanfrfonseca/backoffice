@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{conectcar/base :: layout (~{:: main})}">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CPQD Orbill Backoffice - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    
+
+</head>
+<body id="page-top">
+	
+	<main>
+	
+	<!-- JS -->
+	<script src="/js/mural.js" defer></script>
+	
+	<!-- Begin Page Content -->
+    <div class="container-fluid">
+		
+	<!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <a href="https://jira.cpqd.com.br/secure/RapidBoard.jspa?rapidView=4571&projectKey=BIL#" target="_blank"><h1 class="h3 mb-0 text-primary">CONECTCAR</h1></a>
+	<!--  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> <i class="fas fa-download fa-sm text-white-50"></i> Gerar Relatório</a> -->
+	</div>
+
+	<!-- Content Row -->
+    <div class="row">
+
+        <!-- Card Scripts SQL -->
+        <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-info text-uppercase mb-1">
+                                Scripts</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${contadorScripts}"></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-code fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Base de Conhecimento -->
+        <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-warning text-uppercase mb-1">
+                                Base de Conhecimento</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${contadorArtigos}"></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-lightbulb fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card Notas -->
+        <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-success text-uppercase mb-1">
+                                Notas do Mural</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${contadorNotas}"></div>
+                        </div>
+                        <div class="col-auto">
+                           <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+	
+	<!-- Mural -->
+	<div class="row">
+         <div class="col-xl-12 col-lg-12">
+             <div class="card shadow mb-4">
+               <!-- Card Header - Dropdown -->
+               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Mural de Avisos</h6>
+                  <div class="dropdown no-arrow">
+                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addNotaModal">Adicionar Nota</a>                              
+                     </div>
+                  </div>
+               </div>
+               
+               <!-- Mural Atividades Recorrente-->
+               <div class="card-body">                                             									   					   					 		   		
+			   		<!-- Lista as notas recorrentes no mural -->
+			   		<span class="text-primary">Atividades Recorrentes</span>                  		
+					<hr class="sidebar-divider">
+			   		<div id="notaContainer1" class="row">			   						   			
+			   			<div class="col-lg-4 py-2" th:each="nota : ${notas1}">
+                           <div th:class="${nota.cor}">
+                               <div class="card-body">
+                                   <h6 class="font-weight-bold text-uppercase" th:text="${nota.titulo}"></h6>
+                                   <hr class="sidebar-divider">
+                                   <p class="text-white" th:utext="${nota.texto}"></p>
+								   <hr class="sidebar-divider">
+								   <div class="d-flex align-items-center justify-content-between">
+								   	<span class="text-gray-100" th:text="${nota.usuario}"></span>
+								   	<span class="text-gray-100" th:text="${nota.data}"></span>
+								   	<button th:onclick="apagarNota([[${nota.id}]])" class="btn btn-icon-split btn-sm">
+								   		<i class="fas fa-trash-alt text-gray-100"></i>
+								   	</button>
+								   </div>
+                               </div>
+                           </div>
+                       </div>			   		                    					
+					</div>					                          
+               </div>
+               
+               <!-- Mural Outras Atividades-->
+               <div class="card-body">                                             									   					   					 		   		
+			   		<!-- Lista as outras notas no mural -->
+			   		<span class="text-primary">Outras Atividades</span>                  		
+					<hr class="sidebar-divider">
+			   		<div id="notaContainer2" class="row">			   						   			
+			   			<div class="col-lg-4 py-2" th:each="nota : ${notas2}">
+                           <div th:class="${nota.cor}">
+                               <div class="card-body">
+                                   <h6 class="font-weight-bold text-uppercase" th:text="${nota.titulo}"></h6>
+                                   <hr class="sidebar-divider">
+                                   <p class="text-white" th:utext="${nota.texto}"></p>
+								   <hr class="sidebar-divider">
+								   <div class="d-flex align-items-center justify-content-between">
+								   	<span class="text-gray-100" th:text="${nota.usuario}"></span>
+								   	<span class="text-gray-100" th:text="${nota.data}"></span>
+								   	<button th:onclick="apagarNota([[${nota.id}]])" class="btn btn-icon-split btn-sm">
+								   		<i class="fas fa-trash-alt text-gray-100"></i>
+								   	</button>
+								   </div>
+                               </div>
+                           </div>
+                       </div>			   		                    					
+					</div>					                          
+               </div>
+               
+         </div>
+       </div>
+    </div>
+	
+	</div>
+
+	<!-- Adicionar Nota-->
+    <div class="modal fade" id="addNotaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 50em">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Adicionar Nota</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                	<form id="notaForm" class="user" onsubmit="cadastrarNota(); return false;">
+                       <div class="form-group">
+                       		   <input type="hidden" name="idEmpresa" id="idEmpresa" value="2">                        
+                               <input id="tituloNota" type="text" class="form-control" placeholder="Título" required>                          
+                       </div>
+                       <div class="form-group">
+                       			<select id="corNota" class="form-control">
+                       				 <option value="4 bg-primary">Escolha a cor da nota</option>
+                       				 <option value="1 bg-danger">Prioridade 1 - Vermelho</option>
+                       				 <option value="2 bg-warning">Prioridade 2 - Amarelo</option>
+                       				 <option value="3 bg-dark">Prioridade 3 - Cinza</option>
+                       				 <option value="4 bg-primary">Prioridade 4 - Azul</option>
+                       				 <option value="5 bg-info">Prioridade 5 - Verde</option>
+                       			</select>
+                       </div>
+                       <div class="form-group">
+                       			<select id="tipo" class="form-control">
+                       				 <option value="2">Escolha o tipo da nota</option>
+                       				 <option value="1">Atividade Recorrente</option>
+                       				 <option value="2">Outras Atividades</option>		 
+                       			</select>
+                       </div>
+                       <div class="form-group">
+                           <textarea class="form-control" id="textoNota" rows="5" placeholder="Texto..."></textarea>
+                       </div>
+		               <div class="modal-footer">
+		                   <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+		                   <button class="btn btn-primary" type="submit">Salvar</button>           
+		               </div>
+                   </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+	
+	</main>    
+
+</body>
+</html>

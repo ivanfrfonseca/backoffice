@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{sto/base :: layout (~{:: main})}">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CPQD Orbill Backoffice - Ambientes</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+<body id="page-top">
+	
+	<main>
+	
+	<!-- Begin Page Content -->
+    <div class="container-fluid">
+	
+	<h1 class="h3 mb-0 text-primary">Suporte / Ambientes</h1>
+	
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+	
+        <!-- Content Column -->
+        <div class="col-lg-12 mb-12 py-2">
+            <!-- Approach -->
+            <div class="card shadow mb-12">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Informações de acesso aos ambientes Star One</h6>
+                </div>
+                <div class="card-body">
+                    <p>Temos os ambientes de Produção, Homologação e Teste.</p>
+                    <p>O ambiente de teste fica local no CPQD, já os outros ambientes ficam na infra da STO.</p>
+                    <p><a href="https://confluence.cpqd.com.br/display/CBILL/Ambientes+ORBILL" target="_blank">Nesta página do Confluence</a> estão as informações oficiais de ambientes, caso haja alguma alteração deve sempre ser atualizada.</p>
+                    <p>Abaixo temos acesso rápido às principais informações destes ambientes.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-12 mb-12 py-2">
+            <!-- Approach -->
+            <div class="card shadow mb-12">
+                <div class="card-header py-3">
+                    <h6 class="font-weight-bold text-primary">Produção</h6>
+                </div>
+                <div class="card-body">
+                    <p>
+                    	<span class="font-weight-bold text-primary">Cbill: </span><a href="http://192.168.125.127:11080/cbill/protected/home.do" target="_blank">http://192.168.125.127:11080/cbill/protected/home.do</a><br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>Seu usuário pessoal<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span>Sua senha<br>
+                    </p>
+                    <p>
+                    	<span class="font-weight-bold text-primary">ORACLE PLSQL</span><br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>cbill_itg<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span><a href="https://vault.cpqd.com.br/ui/vault/secrets/kv/show/billing/STO" target="_blank">Acessar Vault</a><br>
+                    	<span class="font-weight-bold text-primary">Instância: </span>CBILLPRD<br>
+                    </p>
+                    <p>
+                    	<span class="font-weight-bold text-primary">PUTTY e WINSCP</span><br>
+                    	<span class="font-weight-bold text-primary">Host: </span>192.168.125.127 <br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>starbepr<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span><a href="https://vault.cpqd.com.br/ui/vault/secrets/kv/show/billing/STO" target="_blank">Acessar Vault</a><br>
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow mb-12">
+                <div class="card-header py-3">
+                    <h6 class="font-weight-bold text-primary">Homologação</h6>
+                </div>
+                <div class="card-body">
+                    <p>
+                    	<span class="font-weight-bold text-primary">Cbill: </span><a href="http://192.168.125.125:11080/cbill/protected/home.do" target="_blank">http://192.168.125.125:11080/cbill/protected/home.do</a><br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>Seu usuário pessoal<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span>Sua senha<br>
+                    </p>
+                    <p>
+                    	<span class="font-weight-bold text-primary">ORACLE PLSQL</span><br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>cbill_itg<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span><a href="https://vault.cpqd.com.br/ui/vault/secrets/kv/show/billing/STO" target="_blank">Acessar Vault</a><br>
+                    	<span class="font-weight-bold text-primary">Instância: </span>CBILLHMG<br>
+                    </p>
+                    <p>
+                    	<span class="font-weight-bold text-primary">PUTTY e WINSCP</span><br>
+                    	<span class="font-weight-bold text-primary">Host: </span>192.168.125.125<br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>starbepr<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span><a href="https://vault.cpqd.com.br/ui/vault/secrets/kv/show/billing/STO" target="_blank">Acessar Vault</a><br>
+                    	<span class="font-weight-bold text-primary">Subir serviço: </span>1) sjboss / 2) rat-dirw.sh  -s<br>
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow mb-12">
+                <div class="card-header py-3">
+                    <h6 class="font-weight-bold text-primary">Testes (Local)</h6>
+                </div>
+                <div class="card-body">
+                    <p>
+                    	<span class="font-weight-bold text-primary">Cbill: </span><a href="http://dsno35:38480/cbill " target="_blank">http://dsno35:38480/cbill </a><br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>master<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span><a href="https://vault.cpqd.com.br/ui/vault/secrets/kv/show/billing/STO" target="_blank">Acessar Vault</a>
+                    </p>
+                    <p>
+                    	<span class="font-weight-bold text-primary">ORACLE PLSQL</span><br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>cbill01sto<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span><a href="https://vault.cpqd.com.br/ui/vault/secrets/kv/show/billing/STO" target="_blank">Acessar Vault</a><br>
+                    	<span class="font-weight-bold text-primary">Instância: </span>no2611i2<br>
+                    </p>
+                    <p>
+                    	<span class="font-weight-bold text-primary">PUTTY e WINSCP</span><br>
+                    	<span class="font-weight-bold text-primary">Host: </span>dsno35<br>
+                    	<span class="font-weight-bold text-primary">Usuário: </span>Seu usário de rede<br>
+                    	<span class="font-weight-bold text-primary">Senha: </span>Sua senha<br>
+                    	<span class="font-weight-bold text-primary">Para Putty: </span>sudo -iu cbsto01<br>
+                    	<span class="font-weight-bold text-primary">Para WinSCP: </span>Protocolo SCP / Comando SCP/Shell: sudo -iu cbsto01<br>
+                    </p>
+                </div>
+            </div> 
+                      
+        </div>
+                     
+	</div>
+	
+	</main>    
+
+</body>
+</html>

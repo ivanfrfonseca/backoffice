@@ -1,0 +1,54 @@
+###############################################
+## Docker compose for BackOffice             ##
+## @author Bruno Costa - baraujo@cpqd.com.br ##
+## @since 1.0.0                              ##
+###############################################
+
+#####################
+# Orbill Backoffice #
+#####################
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/backoffice.dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy  
+    env_file: 
+      - .env # Reference : settings/env.example
+    volumes:
+      - maven-cache:/root/.m3
+    networks:
+      - cpqd-network
+
+###################
+# BackOffice - BD #
+###################
+  db:
+    image: artifactory.cpqd.com.br/orbill-docker-prod/microservices-postgres:14.2
+    container_name: postgres-db
+    env_file:
+      - .database.env # Reference : settings/database.env.example
+    ports:
+      - 5432:5432
+    networks:
+      - cpqd-network
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./last-db.sh:/docker-entrypoint-initdb.d/last-db.sh
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5                 
+
+networks:
+  cpqd-network:
+    driver: bridge
+
+volumes:
+  postgres-data: 
+  maven-cache:
